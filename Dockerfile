@@ -5,7 +5,8 @@ MAINTAINER paxel.co
 RUN \
   apt-get -y update && \
   apt-get install -y --no-install-recommends apt-utils && \
-  apt-get install net-tools && \
+  apt-get install net-tools -y && \
+  apt-get install -y zip && \
   apt-get install -y unzip && \
   apt-get install -y wget && \
   apt-get install -y openjdk-8-jdk && \
@@ -26,6 +27,6 @@ RUN unzip -d /opt apache-servicemix-7.0.1.zip; \
     rm -f apache-servicemix-7.0.1.zip;
 RUN ls -la ./
 EXPOSE 22 1099 8101 8181 8081 80
-ENTRYPOINT bash -c "ifconfig && cd /opt/apache-servicemix-7.0.1/bin && ./servicemix"
-#ENTRYPOINT ifconfig && /opt/apache-servicemix-7.0.1/bin/servicemix server
+#ENTRYPOINT bash -c "ifconfig && cd /opt/apache-servicemix-7.0.1/bin && ./servicemix"
+ENTRYPOINT ifconfig && /opt/apache-servicemix-7.0.1/bin/servicemix server
 CMD ["bash"]
